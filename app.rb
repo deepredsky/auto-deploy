@@ -4,6 +4,10 @@ require 'rubygems'
 require 'sinatra'
 require 'auto_deploy'
 
+use Rack::Auth::Basic, "Restricted Area" do |username, password|
+  [username, password] == [ENV['AUTO_DEPLOY_USERNAME'], ENV['AUTO_DEPLOY_PASSWORD']]
+end
+
 get "/" do
-  "Hello World"
+  "Nothing here!"
 end
